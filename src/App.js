@@ -1,10 +1,15 @@
 import { useState, useMemo } from 'react';
-import { createTheme, ThemeProvider, CssBaseline, Divider  } from '@mui/material';
+import {
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+  Divider,
+} from '@mui/material';
 import darkLightModeContext from './components/context/darklightmode-context';
 import UserDataInput from './components/Pages/UserData';
 import FourPillarsOfDestinyMain from './components/Pages/FourPillarsOfDestiny';
 
-function App() {
+const App = () => {
   const [mode, setMode] = useState('light');
   const darkLightMode = useMemo(
     () => ({
@@ -34,17 +39,21 @@ function App() {
     console.log('app comp updated => ', genderValue, dateValue, timeValue);
   };
   return (
-    <darkLightModeContext.Provider value={darkLightMode} >
-      <ThemeProvider theme={theme} >
-      <CssBaseline />
-      <Divider variant="middle" textAlign="left">
-          Personal Data 
-        </Divider> 
-      <UserDataInput update={updateHandler} />
-      <FourPillarsOfDestinyMain gender={genderValue} date={dateValue} time={timeValue} />
+    <darkLightModeContext.Provider value={darkLightMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Divider variant="middle" textAlign="left">
+          Personal Data
+        </Divider>
+        <UserDataInput update={updateHandler} />
+        <FourPillarsOfDestinyMain
+          gender={genderValue}
+          date={dateValue}
+          time={timeValue}
+        />
       </ThemeProvider>
     </darkLightModeContext.Provider>
   );
-}
+};
 
 export default App;
